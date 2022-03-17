@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/course_list.dart';
 
 const TextStyle boldText = TextStyle(
   fontWeight: FontWeight.bold,
@@ -127,7 +128,7 @@ class SignIn extends StatelessWidget {
                 textColor: Colors.deepPurple[800],
                 color: Colors.deepPurple[800],
                 onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Login2()))),
+                    MaterialPageRoute(builder: (context) => CourseList()))),
           ),
           const SizedBox(height: 10.0),
         ],
