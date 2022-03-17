@@ -1,0 +1,17 @@
+include: ./dart_test_base.yaml
+
+tags:
+  # Integration tests need more time to run.
+  integration:
+    timeout: 1m
+
+  # Any test that spawns a browser.
+  browser:
+    timeout: 2m
+
+  # Tests that spawn specific browsers. These automatically get the browser tag
+  # as well.
+  chrome: {add_tags: [browser]}
+  firefox: {add_tags: [browser]}
+  safari: {add_tags: [browser]}
+  ie: {add_tags: [browser]}
