@@ -49,7 +49,7 @@ Widget defaultAppBar() {
   );
 }
 
-Widget defaultAppBar2(BuildContext context, String txt, Widget targetScreen) {
+Widget defaultAppBar2(BuildContext context, String title, Widget targetScreen) {
   return PreferredSize(
     child: Container(
       height: 90,
@@ -58,9 +58,9 @@ Widget defaultAppBar2(BuildContext context, String txt, Widget targetScreen) {
       decoration: BoxDecoration(
           color: Colors.deepPurple[200],
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20.0),
-            bottomRight: Radius.circular(20.0),
-          )),
+              // bottomLeft: Radius.circular(20.0),
+              // bottomRight: Radius.circular(20.0),
+              )),
       child: ListTile(
         leading: IconButton(
           color: Colors.white,
@@ -69,6 +69,21 @@ Widget defaultAppBar2(BuildContext context, String txt, Widget targetScreen) {
             context,
             MaterialPageRoute(builder: (context) => targetScreen),
           ),
+        ),
+        // trailing: TextButton(
+        //   onPressed: () {},
+        //   child: IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(
+        //       Icons.favorite_border,
+        //       color: Colors.white,
+        //     ),
+        //   ),
+        // ),
+        title: Text(
+          title,
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.0),
         ),
       ),
     ),

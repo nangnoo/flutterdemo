@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/course_list.dart';
+import 'package:flutterdemo/widgets/components/common.dart';
 
 // import 'package:cached_network_image/cached_network_image.dart';
 
@@ -77,50 +79,15 @@ class _CourseDetailState extends State<CourseDetail> {
     }
   ];
 
-  // get courseIndex => this.courseIndex;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
-      // appBar: PreferredSize(
-      //   child: Container(
-      //     height: 90,
-      //     padding: const EdgeInsets.only(top: 20.0),
-      //     alignment: Alignment.center,
-      //     decoration: BoxDecoration(
-      //         color: primary,
-      //         borderRadius: BorderRadius.only(
-      //           bottomLeft: Radius.circular(20.0),
-      //           bottomRight: Radius.circular(20.0),
-      //         )),
-      //     child: ListTile(
-      //       leading: IconButton(
-      //         color: Colors.white,
-      //         icon: Icon(Icons.arrow_back_ios),
-      //         onPressed: () {},
-      //       ),
-      //       trailing: TextButton(
-      //         onPressed: () {},
-      //         child: IconButton(
-      //           onPressed: () {},
-      //           icon: Icon(
-      //             Icons.favorite_border,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //       ),
-      //       title: Text(
-      //         trainingLists[widget.courseIndex]['name'],
-      //         style: TextStyle(
-      //             color: Colors.white,
-      //             fontWeight: FontWeight.bold,
-      //             fontSize: 22.0),
-      //       ),
-      //     ),
-      //   ),
-      //   preferredSize: Size.fromHeight(90.0),
-      // ),
+      appBar: defaultAppBar2(
+        context,
+        trainingLists[widget.courseIndex]['name'],
+        CourseList(),
+      ),
       body: Stack(
         children: <Widget>[
           Container(
@@ -304,20 +271,20 @@ class _CourseDetailState extends State<CourseDetail> {
               ],
             ),
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              centerTitle: true,
-              title: Text(
-                "DETAIL",
-                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   top: 0,
+          //   left: 0,
+          //   right: 0,
+          //   child: AppBar(
+          //     backgroundColor: Colors.transparent,
+          //     elevation: 0,
+          //     centerTitle: true,
+          //     title: Text(
+          //       "DETAIL",
+          //       style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
