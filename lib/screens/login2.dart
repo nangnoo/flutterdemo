@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/screens/course_detail.dart';
 import 'package:flutterdemo/screens/course_list.dart';
+
+import '../widgets/components/common.dart';
+import 'home2.dart';
 
 const TextStyle boldText = TextStyle(
   fontWeight: FontWeight.bold,
@@ -12,6 +16,8 @@ class Login2 extends StatefulWidget {
 
 class _Login2State extends State<Login2> {
   bool signupForm;
+  final primary = Color(0xFFB39DDB);
+
   @override
   void initState() {
     super.initState();
@@ -21,6 +27,8 @@ class _Login2State extends State<Login2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: defaultAppBar(),
+      // appBar: PreferredSize(
       body: Stack(
         children: <Widget>[
           FractionallySizedBox(
@@ -122,13 +130,16 @@ class SignIn extends StatelessWidget {
               horizontal: 32.0,
             ),
             child: OutlineButton(
-                highlightElevation: 0,
-                borderSide: BorderSide(color: Colors.deepPurple[800]),
-                child: Text("Sign in"),
-                textColor: Colors.deepPurple[800],
-                color: Colors.deepPurple[800],
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CourseList()))),
+              highlightElevation: 0,
+              borderSide: BorderSide(color: Colors.deepPurple[800]),
+              child: Text("Sign in"),
+              textColor: Colors.deepPurple[800],
+              color: Colors.deepPurple[800],
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CourseList()),
+              ),
+            ),
           ),
           const SizedBox(height: 10.0),
         ],

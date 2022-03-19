@@ -5,6 +5,8 @@ import 'package:flutterdemo/widgets/components/common.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'home2.dart';
+
 const TextStyle boldText = TextStyle(
   fontWeight: FontWeight.bold,
 );
@@ -98,6 +100,7 @@ class _Register2State extends State<Register2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: defaultAppBar(),
       body: Stack(
         children: <Widget>[
           FractionallySizedBox(

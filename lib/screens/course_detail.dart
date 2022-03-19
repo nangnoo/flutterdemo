@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/course_detail.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
 
-class CourseList extends StatefulWidget {
-  CourseList({Key key}) : super(key: key);
-  static final String path = "lib/src/pages/lists/list2.dart";
-
-  _CourseListState createState() => _CourseListState();
+class CourseDetail extends StatefulWidget {
+  const CourseDetail({Key key, @required this.courseIndex}) : super(key: key);
+  // static final String path = "lib/src/pages/lists/list2.dart";
+  final int courseIndex;
+  _CourseDetailState createState() => _CourseDetailState();
 }
 
-class _CourseListState extends State<CourseList> {
+class _CourseDetailState extends State<CourseDetail> {
   final TextStyle dropdownMenuItem =
       TextStyle(color: Colors.black, fontSize: 18);
 
@@ -34,14 +33,14 @@ class _CourseListState extends State<CourseList> {
           "https://icons-for-free.com/iconfiles/png/512/cypress-1324440144114984250.png"
     },
     {
-      "name": "Espresso UI Test",
+      "name": "Espresso UI Android Test",
       "date": "10/08/2025",
       "trainer": "K. RUKKIJ WANLOPTAREE",
       "logoText":
           "https://www.pikpng.com/pngl/m/52-521739_espresso-android-png-clipart.png"
     },
     {
-      "name": "XCUITest",
+      "name": "XCUITest iOS UI Test",
       "date": "15/08/2025",
       "trainer": "K. NAPATR TANSUTIRAPHONG",
       "logoText":
@@ -62,20 +61,22 @@ class _CourseListState extends State<CourseList> {
           "https://upload.wikimedia.org/wikipedia/commons/e/e4/Robot-framework-logo.png"
     },
     {
-      "name": "Basic JavaScript #1",
+      "name": "Basic JavaScript #Round 1",
       "date": "23/08/2025 - 24/08/2025",
       "trainer": "K. WEERAWAT SEETALALAI",
       "logoText":
           "https://w7.pngwing.com/pngs/1007/564/png-transparent-java-script-logo-javascript-web-development-logo-script-text-computer-programming-internet.png"
     },
     {
-      "name": "Basic JavaScript #2",
+      "name": "Basic JavaScript #Round 2",
       "date": "10/09/2025 - 11/09/2025",
       "trainer": "K. WEERAWAT SEETALALAI",
       "logoText":
           "https://w7.pngwing.com/pngs/1007/564/png-transparent-java-script-logo-javascript-web-development-logo-script-text-computer-programming-internet.png"
     }
   ];
+
+  // get courseIndex => this.courseIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +96,7 @@ class _CourseListState extends State<CourseList> {
           child: ListTile(
             leading: IconButton(
               color: Colors.white,
-              icon: Icon(Icons.menu),
-              // icon: Icon(Icons.arrow_back_ios),
+              icon: Icon(Icons.arrow_back_ios),
               onPressed: () {},
             ),
             trailing: TextButton(
@@ -110,7 +110,7 @@ class _CourseListState extends State<CourseList> {
               ),
             ),
             title: Text(
-              "Training Courses",
+              trainingLists[widget.courseIndex]['name'],
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -179,97 +179,6 @@ class _CourseListState extends State<CourseList> {
   }
 
   Widget buildList(BuildContext context, int index) {
-    return InkWell(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CourseDetail(courseIndex: index)));
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: Colors.white,
-          ),
-          width: double.infinity,
-          height: 110,
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                width: 70,
-                height: 70,
-                margin: EdgeInsets.only(right: 25, top: 5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(width: 3, color: secondary),
-                  image: DecorationImage(
-                      image: NetworkImage(trainingLists[index]['logoText']),
-                      fit: BoxFit.fill),
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      trainingLists[index]['name'],
-                      style: TextStyle(
-                          color: primaryText,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.calendar_today_rounded,
-                          color: secondary,
-                          size: 20,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(trainingLists[index]['date'],
-                            style: TextStyle(
-                                color: primaryText,
-                                fontSize: 12,
-                                letterSpacing: .3)),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 6,
-                    ),
-                    Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.person_rounded,
-                          color: secondary,
-                          size: 20,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(trainingLists[index]['trainer'],
-                            style: TextStyle(
-                                color: primaryText,
-                                fontSize: 12,
-                                letterSpacing: .3)),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ));
-  }
-
-  Widget buildList2(BuildContext context, int index) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),

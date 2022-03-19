@@ -41,6 +41,41 @@ Widget iconAddImage() {
   );
 }
 
+Widget defaultAppBar() {
+  return AppBar(
+    iconTheme: IconThemeData(color: Colors.black),
+    backgroundColor: Colors.deepPurple[200],
+    elevation: 0,
+  );
+}
+
+Widget defaultAppBar2(BuildContext context, String txt, Widget targetScreen) {
+  return PreferredSize(
+    child: Container(
+      height: 90,
+      padding: const EdgeInsets.only(top: 20.0),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: Colors.deepPurple[200],
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+          )),
+      child: ListTile(
+        leading: IconButton(
+          color: Colors.white,
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => targetScreen),
+          ),
+        ),
+      ),
+    ),
+    preferredSize: Size.fromHeight(90.0),
+  );
+}
+
 ThemeData defalutThemeData() {
   return ThemeData(
     primarySwatch: Colors.indigo,
