@@ -4,7 +4,7 @@ import 'package:flutterdemo/utils/common.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutterdemo/main.dart' as app;
 
-import 'screens/home_screen.dart' as homeScreen;
+import './screen/home_screen.dart' as homeScreen;
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();

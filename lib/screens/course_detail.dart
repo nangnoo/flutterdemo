@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+
 // import 'package:cached_network_image/cached_network_image.dart';
 
 class CourseDetail extends StatefulWidget {
   const CourseDetail({Key key, @required this.courseIndex}) : super(key: key);
   // static final String path = "lib/src/pages/lists/list2.dart";
   final int courseIndex;
+
   _CourseDetailState createState() => _CourseDetailState();
 }
 
@@ -14,9 +16,8 @@ class _CourseDetailState extends State<CourseDetail> {
 
   final primary = Color(0xFFB39DDB);
   final primaryText = Color(0xFF4527A0);
-  // final primary = Color(0xff696b9e);
   final secondary = Color(0xfff29a94);
-
+  final TextStyle bold = TextStyle(fontWeight: FontWeight.bold);
   final List<Map> trainingLists = [
     {
       "name": "Basic Unix",
@@ -82,181 +83,241 @@ class _CourseDetailState extends State<CourseDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
-      appBar: PreferredSize(
-        child: Container(
-          height: 90,
-          padding: const EdgeInsets.only(top: 20.0),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: primary,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20.0),
-                bottomRight: Radius.circular(20.0),
-              )),
-          child: ListTile(
-            leading: IconButton(
-              color: Colors.white,
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {},
-            ),
-            trailing: TextButton(
-              onPressed: () {},
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            title: Text(
-              trainingLists[widget.courseIndex]['name'],
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0),
-            ),
+      // appBar: PreferredSize(
+      //   child: Container(
+      //     height: 90,
+      //     padding: const EdgeInsets.only(top: 20.0),
+      //     alignment: Alignment.center,
+      //     decoration: BoxDecoration(
+      //         color: primary,
+      //         borderRadius: BorderRadius.only(
+      //           bottomLeft: Radius.circular(20.0),
+      //           bottomRight: Radius.circular(20.0),
+      //         )),
+      //     child: ListTile(
+      //       leading: IconButton(
+      //         color: Colors.white,
+      //         icon: Icon(Icons.arrow_back_ios),
+      //         onPressed: () {},
+      //       ),
+      //       trailing: TextButton(
+      //         onPressed: () {},
+      //         child: IconButton(
+      //           onPressed: () {},
+      //           icon: Icon(
+      //             Icons.favorite_border,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //       ),
+      //       title: Text(
+      //         trainingLists[widget.courseIndex]['name'],
+      //         style: TextStyle(
+      //             color: Colors.white,
+      //             fontWeight: FontWeight.bold,
+      //             fontSize: 22.0),
+      //       ),
+      //     ),
+      //   ),
+      //   preferredSize: Size.fromHeight(90.0),
+      // ),
+      body: Stack(
+        children: <Widget>[
+          Container(
+            foregroundDecoration: BoxDecoration(color: Colors.black26),
+            height: 400,
+            child: Image.network(trainingLists[widget.courseIndex]['logoText'],
+                fit: BoxFit.cover),
           ),
-        ),
-        preferredSize: Size.fromHeight(90.0),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: Stack(
-            children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(top: 15),
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                child: ListView.builder(
-                    itemCount: trainingLists.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return buildList(context, index);
-                    }),
-              ),
-              /*Container(
-                height: 140,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    color: primary,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(80),
-                        bottomRight: Radius.circular(30))),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(top: 16.0, bottom: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(height: 250),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Text(
+                    trainingLists[widget.courseIndex]['name'],
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Row(
+                  children: <Widget>[
+                    const SizedBox(width: 16.0),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: 16.0,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Text(
+                        "8.4/85 reviews",
+                        style: TextStyle(color: Colors.white, fontSize: 13.0),
+                      ),
+                    ),
+                    Spacer(),
+                    IconButton(
+                      color: Colors.white,
+                      icon: Icon(Icons.favorite_border),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+                Container(
+                  padding: const EdgeInsets.all(32.0),
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.menu,
-                          color: Colors.white,
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text.rich(
+                                  TextSpan(children: [
+                                    WidgetSpan(
+                                        child: Icon(
+                                      Icons.calendar_today_rounded,
+                                      size: 16.0,
+                                      color: primaryText,
+                                    )),
+                                    TextSpan(
+                                        text: trainingLists[widget.courseIndex]
+                                            ['date']),
+                                  ]),
+                                  style: TextStyle(
+                                      color: primaryText, fontSize: 12.0),
+                                ),
+                                const SizedBox(height: 10.0),
+                                Text.rich(
+                                  TextSpan(children: [
+                                    WidgetSpan(
+                                        child: Icon(
+                                      Icons.person_rounded,
+                                      size: 16.0,
+                                      color: primaryText,
+                                    )),
+                                    TextSpan(
+                                        text: trainingLists[widget.courseIndex]
+                                            ['trainer']),
+                                  ]),
+                                  style: TextStyle(
+                                      color: primaryText, fontSize: 12.0),
+                                )
+                              ],
+                            ),
+                          ),
+                          Column(
+                            children: <Widget>[
+                              // const SizedBox(height: 25.0),
+                              Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.star,
+                                    color: primary,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: primary,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: primary,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: primary,
+                                  ),
+                                  Icon(
+                                    Icons.star_border,
+                                    color: primary,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 30.0),
+                      SizedBox(
+                        width: double.infinity,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                          color: primary,
+                          textColor: Colors.white,
+                          child: Text(
+                            "Register Now",
+                            style: TextStyle(fontWeight: FontWeight.normal),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16.0,
+                            horizontal: 32.0,
+                          ),
+                          onPressed: () {},
                         ),
+                      ),
+                      const SizedBox(height: 30.0),
+                      Text(
+                        "Description".toUpperCase(),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 14.0),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Text(
+                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?",
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 14.0),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Text(
+                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?",
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 14.0),
                       ),
                       Text(
-                        "Training Courses",
-                        style: TextStyle(color: Colors.white, fontSize: 24),
+                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?",
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 14.0),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.favorite_border,
-                          color: Colors.white,
-                        ),
+                      Text(
+                        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione architecto autem quasi nisi iusto eius ex dolorum velit! Atque, veniam! Atque incidunt laudantium eveniet sint quod harum facere numquam molestias?",
+                        textAlign: TextAlign.justify,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300, fontSize: 14.0),
                       ),
                     ],
                   ),
                 ),
-              ),*/
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildList(BuildContext context, int index) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
-        color: Colors.white,
-      ),
-      width: double.infinity,
-      height: 110,
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            width: 70,
-            height: 70,
-            margin: EdgeInsets.only(right: 25, top: 5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(50),
-              border: Border.all(width: 3, color: secondary),
-              image: DecorationImage(
-                  image: NetworkImage(trainingLists[index]['logoText']),
-                  fit: BoxFit.fill),
-            ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  trainingLists[index]['name'],
-                  style: TextStyle(
-                      color: primaryText,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.calendar_today_rounded,
-                      color: secondary,
-                      size: 20,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(trainingLists[index]['date'],
-                        style: TextStyle(
-                            color: primaryText,
-                            fontSize: 13,
-                            letterSpacing: .3)),
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.person_rounded,
-                      color: secondary,
-                      size: 20,
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text(trainingLists[index]['trainer'],
-                        style: TextStyle(
-                            color: primaryText,
-                            fontSize: 13,
-                            letterSpacing: .3)),
-                  ],
-                ),
               ],
             ),
-          )
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              centerTitle: true,
+              title: Text(
+                "DETAIL",
+                style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
+              ),
+            ),
+          ),
         ],
       ),
     );
