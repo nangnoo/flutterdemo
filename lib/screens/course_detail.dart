@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/course_list.dart';
+import 'package:flutterdemo/screens/course_regis.dart';
 import 'package:flutterdemo/widgets/components/common.dart';
 
 // import 'package:cached_network_image/cached_network_image.dart';
@@ -230,7 +231,14 @@ class _CourseDetailState extends State<CourseDetail> {
                             vertical: 16.0,
                             horizontal: 32.0,
                           ),
-                          onPressed: () {},
+                          // onPressed: () {},
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CourseRegister(
+                                  courseIndex: widget.courseIndex),
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 30.0),
@@ -271,20 +279,6 @@ class _CourseDetailState extends State<CourseDetail> {
               ],
             ),
           ),
-          // Positioned(
-          //   top: 0,
-          //   left: 0,
-          //   right: 0,
-          //   child: AppBar(
-          //     backgroundColor: Colors.transparent,
-          //     elevation: 0,
-          //     centerTitle: true,
-          //     title: Text(
-          //       "DETAIL",
-          //       style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

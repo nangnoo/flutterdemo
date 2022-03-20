@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/course_detail.dart';
+import 'package:flutterdemo/screens/course_list.dart';
+
+import '../widgets/components/common.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
 
-class CourseList extends StatefulWidget {
-  CourseList({Key key}) : super(key: key);
+class History extends StatefulWidget {
+  History({Key key}) : super(key: key);
   static final String path = "lib/src/pages/lists/list2.dart";
 
-  _CourseListState createState() => _CourseListState();
+  _HistoryState createState() => _HistoryState();
 }
 
-class _CourseListState extends State<CourseList> {
+class _HistoryState extends State<History> {
   final TextStyle dropdownMenuItem =
       TextStyle(color: Colors.black, fontSize: 18);
 
@@ -81,44 +84,10 @@ class _CourseListState extends State<CourseList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
-      appBar: PreferredSize(
-        child: Container(
-          height: 90,
-          padding: const EdgeInsets.only(top: 20.0),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: primary,
-              borderRadius: BorderRadius.only(
-                  // bottomLeft: Radius.circular(20.0),
-                  // bottomRight: Radius.circular(20.0),
-                  )),
-          child: ListTile(
-            leading: IconButton(
-              color: Colors.white,
-              icon: Icon(Icons.menu),
-              // icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {},
-            ),
-            trailing: TextButton(
-              onPressed: () {},
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            title: Text(
-              "Training Courses",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0),
-            ),
-          ),
-        ),
-        preferredSize: Size.fromHeight(90.0),
+      appBar: defaultAppBar2(
+        context,
+        "History",
+        CourseList(),
       ),
       body: SingleChildScrollView(
         child: Container(

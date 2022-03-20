@@ -164,65 +164,68 @@ class SignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: <Widget>[
-          TextField(
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
-              hintText: "enter your email or phone",
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "password",
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
-              prefixStyle: boldText.copyWith(color: Colors.black),
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: "confirm password",
-              contentPadding: const EdgeInsets.all(
-                16.0,
-              ),
-              prefixStyle: boldText.copyWith(color: Colors.black),
-            ),
-          ),
-          const SizedBox(height: 16.0),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 32.0,
-            ),
-            child: RaisedButton(
-              highlightElevation: 0,
-              elevation: 0,
-              child: Text("Sign Up"),
-              textColor: Colors.white,
-              color: Colors.deepPurple[800],
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Register2(),
+        padding: const EdgeInsets.all(16.0),
+        child: Semantics(
+          explicitChildNodes: true,
+          child: Column(
+            children: <Widget>[
+              TextField(
+                key: const ValueKey('btnRegister'),
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  contentPadding: const EdgeInsets.all(
+                    16.0,
+                  ),
+                  hintText: "enter your email or phone",
                 ),
               ),
-            ),
+              const SizedBox(height: 16.0),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "password",
+                  contentPadding: const EdgeInsets.all(
+                    16.0,
+                  ),
+                  prefixStyle: boldText.copyWith(color: Colors.black),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: "confirm password",
+                  contentPadding: const EdgeInsets.all(
+                    16.0,
+                  ),
+                  prefixStyle: boldText.copyWith(color: Colors.black),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32.0,
+                ),
+                child: RaisedButton(
+                  highlightElevation: 0,
+                  elevation: 0,
+                  child: Text("Sign Up"),
+                  textColor: Colors.white,
+                  color: Colors.deepPurple[800],
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Register2(),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10.0),
+            ],
           ),
-          const SizedBox(height: 10.0),
-        ],
-      ),
-    );
+        ));
   }
 }
