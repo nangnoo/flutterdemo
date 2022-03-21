@@ -31,7 +31,6 @@ class _CourseRegisterSuccessState extends State<CourseRegisterSuccess> {
 
   @override
   Widget build(BuildContext context) {
-    // print(globals.joined);
     int isRegistered = joined.indexWhere((f) =>
         f['listIndex'] == trainingLists[widget.courseIndex]['listIndex']);
     if (isRegistered == -1) {

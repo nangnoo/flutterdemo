@@ -58,8 +58,6 @@ class _HistoryState extends State<History> {
   }
 
   Widget buildList(BuildContext context, int index) {
-    print(index);
-    print(trainingLists[index]['listIndex']);
     return InkWell(
         onTap: () {
           Navigator.push(

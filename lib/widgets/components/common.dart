@@ -52,8 +52,8 @@ Widget defaultAppBar() {
 Widget defaultAppBar2(BuildContext context, String title, Widget targetScreen) {
   return PreferredSize(
     child: Container(
-      height: 90,
-      padding: const EdgeInsets.only(top: 20.0),
+      height: 100,
+      padding: const EdgeInsets.only(top: 40.0),
       alignment: Alignment.center,
       decoration: BoxDecoration(
           color: Colors.deepPurple[200],
@@ -70,16 +70,6 @@ Widget defaultAppBar2(BuildContext context, String title, Widget targetScreen) {
             MaterialPageRoute(builder: (context) => targetScreen),
           ),
         ),
-        // trailing: TextButton(
-        //   onPressed: () {},
-        //   child: IconButton(
-        //     onPressed: () {},
-        //     icon: Icon(
-        //       Icons.favorite_border,
-        //       color: Colors.white,
-        //     ),
-        //   ),
-        // ),
         title: Text(
           title,
           style: TextStyle(
