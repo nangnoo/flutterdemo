@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/screens/course_detail.dart';
+import 'package:flutterdemo/screens/history.dart';
+import 'package:flutterdemo/screens/login2.dart';
 import '../utils/constant.dart';
+import '../widgets/components/common.dart';
 // import 'package:cached_network_image/cached_network_image.dart';
 
 class CourseList extends StatefulWidget {
@@ -25,45 +28,8 @@ class _CourseListState extends State<CourseList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
-      appBar: PreferredSize(
-        child: Container(
-          height: 90,
-          padding: const EdgeInsets.only(top: 20.0),
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: primary,
-              borderRadius: BorderRadius.only(
-                  // bottomLeft: Radius.circular(20.0),
-                  // bottomRight: Radius.circular(20.0),
-                  )),
-          child: ListTile(
-            leading: IconButton(
-              color: Colors.white,
-              icon: Icon(Icons.menu),
-              // icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {},
-            ),
-            trailing: TextButton(
-              onPressed: () {},
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            title: Text(
-              "Training Courses",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22.0),
-            ),
-          ),
-        ),
-        preferredSize: Size.fromHeight(90.0),
-      ),
+      drawer: menu(),
+      appBar: buildAppBar(),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -92,9 +58,11 @@ class _CourseListState extends State<CourseList> {
     return InkWell(
         onTap: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CourseDetail(courseIndex: index)));
+            context,
+            MaterialPageRoute(
+              builder: (context) => CourseDetail(courseIndex: index),
+            ),
+          );
         },
         child: Container(
           decoration: BoxDecoration(
@@ -178,5 +146,125 @@ class _CourseListState extends State<CourseList> {
             ],
           ),
         ));
+  }
+
+  AppBar buildAppBar() {
+    return AppBar(
+      elevation: 0.0,
+      backgroundColor: primary,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "Training Courses",
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 22.0),
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        IconButton(
+          onPressed: null,
+          icon: Icon(
+            Icons.favorite_border,
+            color: Colors.white,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget menu() {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          Container(
+            color: primary,
+            //height: deviceSize.height * 0.3,
+            padding: EdgeInsets.only(bottom: 25.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                SizedBox(
+                  height: 50.0,
+                ),
+                ListTile(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  leading: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 100,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        // color: Colors.red,
+                        image: DecorationImage(
+                          image: AssetImage('assets/images/avatar2.png'),
+                          fit: BoxFit.contain,
+                        ),
+                        border: Border.all(
+                          color: primaryText,
+                          width: 3.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                Text(
+                  'QATechx'.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.receipt,
+              color: primaryText,
+            ),
+            title: const Text('History'),
+            // onTap: () {},
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => History(),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.lock,
+              color: primaryText,
+            ),
+            title: const Text('Logout'),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Login2(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
