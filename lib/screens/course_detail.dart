@@ -3,6 +3,9 @@ import 'package:flutterdemo/screens/course_list.dart';
 import 'package:flutterdemo/screens/course_regis.dart';
 import 'package:flutterdemo/widgets/components/common.dart';
 
+import '../utils/constant.dart';
+import '../globals.dart' as globals;
+
 // import 'package:cached_network_image/cached_network_image.dart';
 
 class CourseDetail extends StatefulWidget {
@@ -21,67 +24,13 @@ class _CourseDetailState extends State<CourseDetail> {
   final primaryText = Color(0xFF4527A0);
   final secondary = Color(0xfff29a94);
   final TextStyle bold = TextStyle(fontWeight: FontWeight.bold);
-  final List<Map> trainingLists = [
-    {
-      "name": "Basic Unix",
-      "date": "12/05/2025",
-      "trainer": "K. SHATCHAI JITWATTANA",
-      "logoText":
-          "http://www.thejungleadventure.com/assets/images/noimage/noimage.png"
-    },
-    {
-      "name": "Cypress 101",
-      "date": "18/06/2025 - 19/06/2025",
-      "trainer": "K. Kanittha Harnrattanaprasert",
-      "logoText":
-          "https://icons-for-free.com/iconfiles/png/512/cypress-1324440144114984250.png"
-    },
-    {
-      "name": "Espresso UI Android Test",
-      "date": "10/08/2025",
-      "trainer": "K. RUKKIJ WANLOPTAREE",
-      "logoText":
-          "https://www.pikpng.com/pngl/m/52-521739_espresso-android-png-clipart.png"
-    },
-    {
-      "name": "XCUITest iOS UI Test",
-      "date": "15/08/2025",
-      "trainer": "K. NAPATR TANSUTIRAPHONG",
-      "logoText":
-          "https://images.ctfassets.net/czwjnyf8a9ri/2OWZnl3v2xJcqBZPIczU1s/1ea9ea383887e13d76b0b6c386ddf09c/logo-xcuitest.png"
-    },
-    {
-      "name": "Robot Framework #1",
-      "date": "21/08/2025 - 22/08/2025",
-      "trainer": "K. SUKPANITADA PUHONGCHAI",
-      "logoText":
-          "https://upload.wikimedia.org/wikipedia/commons/e/e4/Robot-framework-logo.png"
-    },
-    {
-      "name": "Robot Framework #2",
-      "date": "23/08/2025 - 24/08/2025",
-      "trainer": "K. SUKPANITADA PUHONGCHAI",
-      "logoText":
-          "https://upload.wikimedia.org/wikipedia/commons/e/e4/Robot-framework-logo.png"
-    },
-    {
-      "name": "Basic JavaScript #Round 1",
-      "date": "23/08/2025 - 24/08/2025",
-      "trainer": "K. WEERAWAT SEETALALAI",
-      "logoText":
-          "https://w7.pngwing.com/pngs/1007/564/png-transparent-java-script-logo-javascript-web-development-logo-script-text-computer-programming-internet.png"
-    },
-    {
-      "name": "Basic JavaScript #Round 2",
-      "date": "10/09/2025 - 11/09/2025",
-      "trainer": "K. WEERAWAT SEETALALAI",
-      "logoText":
-          "https://w7.pngwing.com/pngs/1007/564/png-transparent-java-script-logo-javascript-web-development-logo-script-text-computer-programming-internet.png"
-    }
-  ];
+  final List<Map> trainingLists = courseDetailLists();
+  final List<Map> joined = globals.joined;
 
   @override
   Widget build(BuildContext context) {
+    int isRegistered = joined.indexWhere((f) =>
+        f['listIndex'] == trainingLists[widget.courseIndex]['listIndex']);
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
       appBar: defaultAppBar2(
@@ -216,31 +165,7 @@ class _CourseDetailState extends State<CourseDetail> {
                         ],
                       ),
                       const SizedBox(height: 30.0),
-                      SizedBox(
-                        width: double.infinity,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: primary,
-                          textColor: Colors.white,
-                          child: Text(
-                            "Register Now",
-                            style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16.0,
-                            horizontal: 32.0,
-                          ),
-                          // onPressed: () {},
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CourseRegister(
-                                  courseIndex: widget.courseIndex),
-                            ),
-                          ),
-                        ),
-                      ),
+                      (isRegistered == -1) ? btnRegister() : btnRegistered(),
                       const SizedBox(height: 30.0),
                       Text(
                         "Description".toUpperCase(),
@@ -280,6 +205,57 @@ class _CourseDetailState extends State<CourseDetail> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget btnRegister() {
+    return SizedBox(
+      width: double.infinity,
+      child: RaisedButton(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        color: primary,
+        textColor: Colors.white,
+        child: Text(
+          "Register Now",
+          style: TextStyle(fontWeight: FontWeight.normal),
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: 16.0,
+          horizontal: 32.0,
+        ),
+        // onPressed: () {},
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                CourseRegister(courseIndex: widget.courseIndex),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget btnRegistered() {
+    return SizedBox(
+      width: double.infinity,
+      child: RaisedButton(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        color: Color(0xFFEBE9E9),
+        child: Text(
+          "Registered ",
+          style: TextStyle(
+            fontWeight: FontWeight.normal,
+            color: Color.fromARGB(255, 236, 236, 236),
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: 16.0,
+          horizontal: 32.0,
+        ),
+        // onPressed: () {},
       ),
     );
   }
