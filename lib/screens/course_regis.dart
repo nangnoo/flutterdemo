@@ -118,18 +118,21 @@ class _CourseRegisterState extends State<CourseRegister> {
                       const SizedBox(height: 10.0),
                       SizedBox(
                         width: double.infinity,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: primary,
-                          textColor: Colors.white,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: primary,
+                            onPrimary: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16.0,
+                              horizontal: 32.0,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                          ),
                           child: Text(
                             "Register Now",
                             style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16.0,
-                            horizontal: 32.0,
                           ),
                           onPressed: () => Navigator.push(
                             context,

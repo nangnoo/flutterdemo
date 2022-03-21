@@ -129,12 +129,12 @@ class SignIn extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               horizontal: 32.0,
             ),
-            child: OutlineButton(
-              highlightElevation: 0,
-              borderSide: BorderSide(color: Colors.deepPurple[800]),
+            child: OutlinedButton(
+              style: OutlinedButton.styleFrom(
+                side: BorderSide(color: Colors.deepPurple[800]),
+                primary: Colors.deepPurple[800],
+              ),
               child: Text("Sign in"),
-              textColor: Colors.deepPurple[800],
-              color: Colors.deepPurple[800],
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => CourseList()),

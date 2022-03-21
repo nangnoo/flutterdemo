@@ -212,20 +212,22 @@ class _CourseDetailState extends State<CourseDetail> {
   Widget btnRegister() {
     return SizedBox(
       width: double.infinity,
-      child: RaisedButton(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-        color: primary,
-        textColor: Colors.white,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: primary,
+          onPrimary: Colors.white,
+          padding: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 32.0,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+        ),
         child: Text(
           "Register Now",
           style: TextStyle(fontWeight: FontWeight.normal),
         ),
-        padding: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 32.0,
-        ),
-        // onPressed: () {},
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(
@@ -240,22 +242,23 @@ class _CourseDetailState extends State<CourseDetail> {
   Widget btnRegistered() {
     return SizedBox(
       width: double.infinity,
-      child: RaisedButton(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-        color: Color(0xFFEBE9E9),
-        child: Text(
-          "Registered ",
-          style: TextStyle(
-            fontWeight: FontWeight.normal,
-            color: Color.fromARGB(255, 236, 236, 236),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: primary,
+          onPrimary: Colors.white,
+          padding: const EdgeInsets.symmetric(
+            vertical: 16.0,
+            horizontal: 32.0,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
           ),
         ),
-        padding: const EdgeInsets.symmetric(
-          vertical: 16.0,
-          horizontal: 32.0,
+        child: Text(
+          "Registered",
+          style: TextStyle(fontWeight: FontWeight.normal),
         ),
-        // onPressed: () {},
+        onPressed: null,
       ),
     );
   }
