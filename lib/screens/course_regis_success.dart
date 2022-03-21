@@ -41,7 +41,7 @@ class _CourseRegisterSuccessState extends State<CourseRegisterSuccess> {
       backgroundColor: Color(0xfff0f0f0),
       appBar: defaultAppBar2(
         context,
-        "Register Success",
+        trainingLists[widget.courseIndex]['name'],
         CourseList(),
       ),
       body: Stack(
@@ -58,58 +58,43 @@ class _CourseRegisterSuccessState extends State<CourseRegisterSuccess> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Text(
-                        trainingLists[widget.courseIndex]['name'],
-                        style: TextStyle(
-                            color: primaryText,
-                            fontSize: 28.0,
-                            fontWeight: FontWeight.bold),
-                      ),
                       const SizedBox(height: 16.0),
-                      Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text.rich(
-                                  TextSpan(children: [
-                                    WidgetSpan(
-                                        child: Icon(
-                                      Icons.calendar_today_rounded,
-                                      size: 18.0,
-                                      color: primaryText,
-                                    )),
-                                    TextSpan(text: 'Thank You'),
-                                  ]),
-                                  style: TextStyle(
-                                      color: primaryText, fontSize: 14.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Column(
-                            children: <Widget>[
-                              // const SizedBox(height: 25.0),
-                            ],
-                          )
-                        ],
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.done,
+                          color: Color.fromARGB(131, 6, 184, 101),
+                          size: 80,
+                        ),
                       ),
-                      const SizedBox(height: 30.0),
+                      const SizedBox(height: 20.0),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text.rich(
+                          TextSpan(children: [
+                            TextSpan(text: 'Registration Success'),
+                          ]),
+                          style: TextStyle(color: primaryText, fontSize: 20.0),
+                        ),
+                      ),
+                      const SizedBox(height: 50.0),
                       SizedBox(
                         width: double.infinity,
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                          color: primary,
-                          textColor: Colors.white,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: primary,
+                            onPrimary: Colors.white,
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 16.0,
+                              horizontal: 32.0,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                          ),
                           child: Text(
                             "History",
                             style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16.0,
-                            horizontal: 32.0,
                           ),
                           onPressed: () => Navigator.push(
                             context,
