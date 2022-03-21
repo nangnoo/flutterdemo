@@ -29,6 +29,11 @@ class _CourseRegisterState extends State<CourseRegister> {
 
   @override
   Widget build(BuildContext context) {
+    final idController = TextEditingController();
+    final nameController = TextEditingController();
+    final emailController = TextEditingController();
+    // String uname = "qatechx";
+    // String pass = "112233";
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
       appBar: defaultAppBar2(
@@ -82,22 +87,6 @@ class _CourseRegisterState extends State<CourseRegister> {
                                   style: TextStyle(
                                       color: primaryText, fontSize: 14.0),
                                 ),
-                                // const SizedBox(height: 10.0),
-                                // Text.rich(
-                                //   TextSpan(children: [
-                                //     WidgetSpan(
-                                //         child: Icon(
-                                //       Icons.person_rounded,
-                                //       size: 16.0,
-                                //       color: primaryText,
-                                //     )),
-                                //     TextSpan(
-                                //         text: trainingLists[widget.courseIndex]
-                                //             ['trainer']),
-                                //   ]),
-                                //   style: TextStyle(
-                                //       color: primaryText, fontSize: 12.0),
-                                // )
                               ],
                             ),
                           ),
@@ -109,39 +98,61 @@ class _CourseRegisterState extends State<CourseRegister> {
                         ],
                       ),
                       const SizedBox(height: 30.0),
-                      buildTextField('Employee ID', 'enter your id',
+                      buildTextField(
+                          idController, 'Employee ID', 'enter your id',
                           id: 'inputID'),
-                      buildTextField('Full Name', 'enter your full name',
+                      buildTextField(
+                          nameController, 'Full Name', 'enter your full name',
                           id: 'inputName'),
-                      buildTextField('Email', 'enter your email',
+                      buildTextField(
+                          emailController, 'Email', 'enter your email',
                           id: 'inputEmail'),
                       const SizedBox(height: 10.0),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: primary,
-                            onPrimary: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 16.0,
-                              horizontal: 32.0,
+                            style: ElevatedButton.styleFrom(
+                              primary: primary,
+                              onPrimary: Colors.white,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16.0,
+                                horizontal: 32.0,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
                             ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
+                            child: Text(
+                              "Register Now",
+                              style: TextStyle(fontWeight: FontWeight.normal),
                             ),
-                          ),
-                          child: Text(
-                            "Register Now",
-                            style: TextStyle(fontWeight: FontWeight.normal),
-                          ),
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CourseRegisterSuccess(
-                                  courseIndex: widget.courseIndex),
-                            ),
-                          ),
-                        ),
+                            onPressed: () {
+                              if (idController.text == '' &&
+                                  nameController.text == '' &&
+                                  emailController.text == '') {
+                                // globals.emailLogedIn = uname;
+                                // globals.isLoggedIn = true;
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CourseRegisterSuccess(
+                                        courseIndex: widget.courseIndex),
+                                  ),
+                                );
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return CustomAlertDialog(
+                                      type: AlertDialogType.ERROR,
+                                      title: "Register Failed",
+                                      content:
+                                          "Please fill out all required fields",
+                                    );
+                                  },
+                                );
+                              }
+                            }),
                       ),
                     ],
                   ),
@@ -154,7 +165,7 @@ class _CourseRegisterState extends State<CourseRegister> {
     );
   }
 
-  Widget buildTextField(title, hint, {id: ''}) {
+  Widget buildTextField(controllor, title, hint, {id: ''}) {
     const TextStyle boldText = TextStyle(
       fontWeight: FontWeight.bold,
     );
@@ -165,6 +176,7 @@ class _CourseRegisterState extends State<CourseRegister> {
             Text(title),
             SizedBox(height: 3.0),
             TextField(
+              controller: controllor,
               key: (Key(id)),
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
