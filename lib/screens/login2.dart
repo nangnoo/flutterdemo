@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/course_detail.dart';
 import 'package:flutterdemo/screens/course_list.dart';
 
 import '../widgets/components/common.dart';
-import 'home2.dart';
+import '../globals.dart' as globals;
+// import 'home2.dart';
 
 const TextStyle boldText = TextStyle(
   fontWeight: FontWeight.bold,
@@ -98,11 +98,18 @@ class _Login2State extends State<Login2> {
 class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final unameController = TextEditingController();
+    final passController = TextEditingController();
+    String uname = "qatechx";
+    String pass = "112233";
+
     return Container(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
           TextField(
+            controller: unameController,
+            key: const Key('username'),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               contentPadding: const EdgeInsets.all(
@@ -113,6 +120,8 @@ class SignIn extends StatelessWidget {
           ),
           const SizedBox(height: 16.0),
           TextField(
+            controller: passController,
+            key: const Key('password'),
             obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
@@ -130,16 +139,35 @@ class SignIn extends StatelessWidget {
               horizontal: 32.0,
             ),
             child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Colors.deepPurple[800]),
-                primary: Colors.deepPurple[800],
-              ),
-              child: Text("Sign in"),
-              onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CourseList()),
-              ),
-            ),
+                style: OutlinedButton.styleFrom(
+                  side: BorderSide(color: Colors.deepPurple[800]),
+                  primary: Colors.deepPurple[800],
+                ),
+                child: Text("Sign in"),
+                onPressed: () {
+                  if (uname == unameController.text &&
+                      pass == passController.text) {
+                    globals.emailLogedIn = uname;
+                    globals.isLoggedIn = true;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CourseList()),
+                    );
+                  } else {
+                    unameController.text = "";
+                    passController.text = "";
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CustomAlertDialog(
+                          type: AlertDialogType.ERROR,
+                          title: "Login Failed",
+                          content: "Your user ID or password is incorrect.",
+                        );
+                      },
+                    );
+                  }
+                }),
           ),
           const SizedBox(height: 10.0),
         ],
