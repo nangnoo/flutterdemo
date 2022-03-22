@@ -125,6 +125,7 @@ class CustomAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+        key: const Key('customDialog'),
         type: MaterialType.transparency,
         child: Container(
           alignment: Alignment.center,
@@ -150,11 +151,13 @@ class CustomAlertDialog extends StatelessWidget {
                   title,
                   style: titleStyle,
                   textAlign: TextAlign.center,
+                  key: const Key('dialogTitle'),
                 ),
                 Divider(),
                 Text(
                   content,
                   textAlign: TextAlign.center,
+                  key: const Key('dialogDescription'),
                 ),
                 SizedBox(height: 40.0),
                 SizedBox(

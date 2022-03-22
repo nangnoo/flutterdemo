@@ -111,7 +111,7 @@ class SignIn extends StatelessWidget {
           TextField(
             controller: unameController,
             textInputAction: TextInputAction.next,
-            key: const Key('username'),
+            key: const Key('inputUsername'),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               contentPadding: const EdgeInsets.all(
@@ -123,7 +123,7 @@ class SignIn extends StatelessWidget {
           const SizedBox(height: 16.0),
           TextField(
             controller: passController,
-            key: const Key('password'),
+            key: const Key('inputPassword'),
             obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
@@ -141,6 +141,7 @@ class SignIn extends StatelessWidget {
               horizontal: 32.0,
             ),
             child: OutlinedButton(
+                key: const Key('btnSignIn'),
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: Colors.deepPurple[800]),
                   primary: Colors.deepPurple[800],
