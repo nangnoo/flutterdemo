@@ -62,6 +62,9 @@ void main() {
     print(dialogTitleTxt.data);
     expect(dialogTitleTxt.data, 'Login Failed');
 
+    var btnSignInTxt = btnSignIn.evaluate().single.widget as Text;
+    print(btnSignInTxt.data);
+
     await Future.delayed(const Duration(seconds: 2), () {});
   }, skip: testFilters('#regression #smoke'));
 }
