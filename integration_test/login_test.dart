@@ -36,8 +36,10 @@ void main() {
     await tester.tap(inputPassword);
     await tester.enterText(inputPassword, '112233');
 
+    // close keyboard for android
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+
     await tester.pumpAndSettle();
-    // final btnSignIn2 = find.byKey(Key('btnSignIn'));
     final btnSignIn2 = find.byType(OutlinedButton);
     await tester.tap(btnSignIn2);
 
