@@ -1,11 +1,9 @@
-import 'dart:io';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutterdemo/utils/common.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutterdemo/main.dart' as app;
+import '../keyword/feature/login.dart' as loginFeature;
+import '../utils/common.dart';
 
 // void main(List<String> args) {
 void main() {
@@ -66,7 +64,41 @@ void main() {
 
     var btnSignInTxt = btnSignIn.evaluate().single.widget as Text;
     print(btnSignInTxt.data);
-
-    await Future.delayed(const Duration(seconds: 2), () {});
   }, skip: testFilters('#regression #smoke'));
+
+  testWidgets("TECHQA-002 Login success", (WidgetTester tester) async {
+    app.main();
+    await tester.pumpAndSettle();
+    final btnSignIn = find.text('Sign in');
+    expect(btnSignIn, findsOneWidget);
+    await tester.tap(btnSignIn);
+    await tester.pumpAndSettle();
+
+    // find element by ID
+    final inputUsername = find.byKey(Key('inputUsername'));
+    await tester.tap(inputUsername);
+    await tester.enterText(inputUsername, 'qa');
+
+    // find element by Hint
+    final inputPassword = find.bySemanticsLabel('password');
+    await tester.tap(inputPassword);
+    await tester.enterText(inputPassword, '112233');
+
+    // close keyboard for android
+    await tester.testTextInput.receiveAction(TextInputAction.done);
+
+    await tester.pumpAndSettle();
+    final btnSignIn2 = find.byType(OutlinedButton);
+    await tester.tap(btnSignIn2);
+
+    // verify course list
+    final screenTitle = find.text('Training Courses');
+    await tester.pumpAndSettle();
+    expect(screenTitle, findsOneWidget);
+  }, skip: testFilters('#regressions'));
+
+  testWidgets("TECHQA-003 Login success V2", (WidgetTester tester) async {
+    app.main();
+    await loginFeature.enterDataAndClickLogin(tester, 'qa', '112233');
+  }, skip: testFilters('#smoke'));
 }
