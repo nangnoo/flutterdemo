@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -22,16 +24,17 @@ void main() {
     expect(btnSignIn, findsOneWidget);
 
     await tester.tap(btnSignIn);
-    await tester.pumpAndSettle();
 
     // find element by ID
+    await tester.pumpAndSettle();
     final inputUsername = find.byKey(Key('inputUsername'));
     await tester.tap(inputUsername);
     await tester.enterText(inputUsername, 'email@eamil.coms');
+    await tester.testTextInput.receiveAction(TextInputAction.done);
 
     // find element by Hint
     final inputPassword = find.bySemanticsLabel('password');
-    await tester.tap(inputPassword);
+    if (Platform.isIOS) await tester.tap(inputPassword);
     await tester.enterText(inputPassword, '112233');
 
     // close keyboard for android
@@ -81,7 +84,7 @@ void main() {
 
     // find element by Hint
     final inputPassword = find.bySemanticsLabel('password');
-    await tester.tap(inputPassword);
+    if (Platform.isIOS) await tester.tap(inputPassword);
     await tester.enterText(inputPassword, '112233');
 
     // close keyboard for android
@@ -99,6 +102,13 @@ void main() {
 
   testWidgets("TECHQA-003 Login success V2", (WidgetTester tester) async {
     app.main();
-    await loginFeature.enterDataAndClickLogin(tester, 'qa', '112233');
+    await loginFeature.enterDataAndLoginSuccess(tester, 'qa', '112233');
+  }, skip: testFilters('#smoke'));
+
+  testWidgets("TECHQA-004 Login Fail V2", (WidgetTester tester) async {
+    app.main();
+    await loginFeature.enterDataAndClickLogin(tester, 'qaxxxxx', '112233');
+    await loginFeature.verifyDialog(
+        tester, 'Login Failed', 'Your user ID or password is incorrect.');
   }, skip: testFilters('#smoke'));
 }

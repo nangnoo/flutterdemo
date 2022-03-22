@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -44,4 +45,13 @@ takeScreenshot(tester, binding, {imagePath = ''}) async {
 
   await tester.pumpAndSettle();
   await binding.takeScreenshot(screenshotName);
+}
+
+Future<void> tapAndEnterText(tester, inputText, txt) async {
+  if (Platform.isIOS) await tester.tap(inputText);
+
+  await tester.enterText(inputText, txt);
+
+  if (Platform.isAndroid)
+    await tester.testTextInput.receiveAction(TextInputAction.done);
 }
