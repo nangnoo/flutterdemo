@@ -45,7 +45,8 @@ class _Login2State extends State<Login2> {
                 const SizedBox(height: 20.0),
                 Container(
                   alignment: Alignment.topCenter,
-                  height: (MediaQuery.of(context).size.height / 2) - 150,
+                  // height: (MediaQuery.of(context).size.height / 2) - 150,
+                  height: 190,
                   child: Container(
                     width: 150,
                     child: Image.asset('assets/icon/icon.png'),
