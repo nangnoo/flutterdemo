@@ -4,7 +4,6 @@ import 'package:flutterdemo/screens/history.dart';
 import 'package:flutterdemo/screens/login2.dart';
 import '../utils/constant.dart';
 import '../widgets/components/common.dart';
-// import 'package:cached_network_image/cached_network_image.dart';
 
 class CourseList extends StatefulWidget {
   CourseList({Key key}) : super(key: key);
