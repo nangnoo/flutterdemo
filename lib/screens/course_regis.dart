@@ -7,11 +7,8 @@ import 'package:flutterdemo/widgets/components/common.dart';
 import '../utils/constant.dart';
 import '../globals.dart' as globals;
 
-// import 'package:cached_network_image/cached_network_image.dart';
-
 class CourseRegister extends StatefulWidget {
   const CourseRegister({Key key, @required this.courseIndex}) : super(key: key);
-  // static final String path = "lib/src/pages/lists/list2.dart";
   final int courseIndex;
 
   _CourseRegisterState createState() => _CourseRegisterState();

@@ -109,6 +109,7 @@ class SignIn extends StatelessWidget {
         children: <Widget>[
           TextField(
             controller: unameController,
+            textInputAction: TextInputAction.next,
             key: const Key('username'),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
