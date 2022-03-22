@@ -100,7 +100,7 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final unameController = TextEditingController();
     final passController = TextEditingController();
-    String uname = "qatechx";
+    String uname = "qa";
     String pass = "112233";
 
     return Container(

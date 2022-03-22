@@ -27,13 +27,14 @@ class _CourseRegisterState extends State<CourseRegister> {
   final TextStyle bold = TextStyle(fontWeight: FontWeight.bold);
   final List<Map> trainingLists = courseDetailLists();
 
+  String _selectedGender = 'macos';
+
   @override
   Widget build(BuildContext context) {
     final idController = TextEditingController();
     final nameController = TextEditingController();
     final emailController = TextEditingController();
-    // String uname = "qatechx";
-    // String pass = "112233";
+
     return Scaffold(
       backgroundColor: Color(0xfff0f0f0),
       appBar: defaultAppBar2(
@@ -108,6 +109,45 @@ class _CourseRegisterState extends State<CourseRegister> {
                           emailController, 'Email', 'enter your email',
                           id: 'inputEmail'),
                       const SizedBox(height: 10.0),
+                      Text('Laptop type'),
+                      SizedBox(height: 3.0),
+                      // ListTile(
+                      //   leading: Radio<String>(
+                      //     value: 'other',
+                      //     groupValue: _selectedGender,
+                      //     onChanged: (value) {
+                      //       setState(() {
+                      //         _selectedGender = value;
+                      //       });
+                      //     },
+                      //   ),
+                      //   title: const Text('Male'),
+                      // ),
+                      Row(
+                        children: <Widget>[
+                          Radio(
+                            groupValue: _selectedGender,
+                            value: "macos",
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedGender = value;
+                              });
+                            },
+                          ),
+                          Text("Mac OS"),
+                          Radio(
+                            groupValue: _selectedGender,
+                            value: "windows",
+                            onChanged: (value) {
+                              setState(() {
+                                _selectedGender = value;
+                              });
+                            },
+                          ),
+                          Text("Windows"),
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -127,9 +167,11 @@ class _CourseRegisterState extends State<CourseRegister> {
                               style: TextStyle(fontWeight: FontWeight.normal),
                             ),
                             onPressed: () {
-                              if (idController.text == '' &&
-                                  nameController.text == '' &&
-                                  emailController.text == '') {
+                              print(_selectedGender);
+
+                              if (idController.text != '' &&
+                                  nameController.text != '' &&
+                                  emailController.text != '') {
                                 // globals.emailLogedIn = uname;
                                 // globals.isLoggedIn = true;
                                 Navigator.push(
