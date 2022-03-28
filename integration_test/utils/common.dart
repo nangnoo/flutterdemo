@@ -34,7 +34,8 @@ void setEnv() async {
   await dotenv.load(fileName: "$env");
 }
 
-takeScreenshot(tester, binding, {imagePath = ''}) async {
+Future<void> takeScreenshot(tester, binding, {imagePath = ''}) async {
+  print('screenshot==========>');
   var screenshotName = imagePath == ''
       ? DateTime.now().millisecondsSinceEpoch.toString()
       : imagePath;

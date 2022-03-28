@@ -11,8 +11,8 @@ import '../utils/common.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  // - flutter drive --driver=test_driver/integration_test.dart  --target=integration_test/login_test.dart
-  // - flutter drive --driver=test_driver/integration_test.dart  --target=integration_test/login_test.dart --dart-define="tags=regression"
+  // - flutter drive --driver=test_driver/integration_test.dart --target=integration_test/testcase/login_test.dart
+  // - flutter drive --driver=test_driver/integration_test.dart --target=integration_test/testcase/login_test.dart  --dart-define="tags=regression"
 
   testWidgets("TECHQA-001 Login fail", (WidgetTester tester) async {
     app.main();
@@ -31,6 +31,7 @@ void main() {
     await tester.tap(inputUsername);
     await tester.enterText(inputUsername, 'email@eamil.coms');
     await tester.testTextInput.receiveAction(TextInputAction.done);
+    // await takeScreenshot(tester, binding);
 
     // find element by Hint
     final inputPassword = find.bySemanticsLabel('password');
@@ -57,10 +58,8 @@ void main() {
     );
     expect(dialogTitle2, findsOneWidget);
 
-    print("Get Detail =====================>");
     print(dialogTitle2.evaluate().first);
 
-    print("Get Text From Element=====================>");
     var dialogTitleTxt = dialogTitle2.evaluate().single.widget as Text;
     print(dialogTitleTxt.data);
     expect(dialogTitleTxt.data, 'Login Failed');
