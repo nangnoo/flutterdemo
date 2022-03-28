@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 import 'package:flutterdemo/main.dart' as app;
@@ -8,12 +5,10 @@ import '../keyword/feature/login.dart' as loginFeature;
 import '../keyword/feature/course_management.dart' as courseManageFeature;
 import '../utils/common.dart';
 
-// void main(List<String> args) {
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  // - flutter drive --driver=test_driver/integration_test.dart  --target=integration_test/login_test.dart
-  // - flutter drive --driver=test_driver/integration_test.dart  --target=integration_test/login_test.dart --dart-define="tags=regression"
+  // - flutter drive --driver=test_driver/integration_test.dart  --target=integration_test/register_test.dart
 
   testWidgets("TECHQA-005 Register Unix success", (WidgetTester tester) async {
     app.main();
