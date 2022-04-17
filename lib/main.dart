@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/screens/home.dart';
-import 'package:flutterdemo/screens/home2.dart';
-import 'package:flutterdemo/screens/Login2.dart';
-import 'package:flutterdemo/widgets/components/common.dart';
+import './screens/home.dart';
+import './screens/home2.dart';
+import './screens/Login2.dart';
+import './widgets/components/common.dart';
 
 void main() {
   runApp(MyApp());

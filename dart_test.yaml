@@ -6,12 +6,10 @@ tags:
     timeout: 1m
 
   # Any test that spawns a browser.
-  browser:
+  test_type:
     timeout: 2m
 
   # Tests that spawn specific browsers. These automatically get the browser tag
   # as well.
-  chrome: {add_tags: [browser]}
-  firefox: {add_tags: [browser]}
-  safari: {add_tags: [browser]}
-  ie: {add_tags: [browser]}
+  regression: {add_tags: [test_type]}
+  smoke: {add_tags: [test_type]}

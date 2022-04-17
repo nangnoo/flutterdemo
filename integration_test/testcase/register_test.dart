@@ -20,5 +20,5 @@ void main() {
     await courseManageFeature.verifyRegisterCourseSuccess(tester, 'Basic Unix');
     await courseManageFeature.goToAndVerifyCourseRegisterHistory(
         tester, 'Basic Unix');
-  }, skip: testFilters('#register'));
+  }, tags: ['regression'], skip: testFilters('#regression'));
 }

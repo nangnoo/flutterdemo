@@ -7,6 +7,8 @@ import 'package:flutterdemo/main.dart' as app;
 import '../keyword/feature/login.dart' as loginFeature;
 import '../utils/common.dart';
 
+@Tags(['test_type'])
+
 // void main(List<String> args) {
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +68,7 @@ void main() {
 
     var btnSignInTxt = btnSignIn.evaluate().single.widget as Text;
     print(btnSignInTxt.data);
-  }, skip: testFilters('#regression #smoke'));
+  }, tags: ['regression', 'smoke']);
 
   testWidgets("TECHQA-002 Login success", (WidgetTester tester) async {
     app.main();
@@ -97,17 +99,17 @@ void main() {
     final screenTitle = find.text('Training Courses');
     await tester.pumpAndSettle();
     expect(screenTitle, findsOneWidget);
-  }, skip: testFilters('#regressions'));
+  }, tags: ['regression']);
 
   testWidgets("TECHQA-003 Login success V2", (WidgetTester tester) async {
     app.main();
     await loginFeature.enterDataAndLoginSuccess(tester, 'qa', '112233');
-  }, skip: testFilters('#smoke'));
+  }, tags: ['smoke']);
 
   testWidgets("TECHQA-004 Login Fail V2", (WidgetTester tester) async {
     app.main();
     await loginFeature.enterDataAndClickLogin(tester, 'qaxxxxx', '112233');
     await loginFeature.verifyDialog(
         tester, 'Login Failed', 'Your user ID or password is incorrect.');
-  }, skip: testFilters('#smoke'));
+  }, tags: ['regression']);
 }
