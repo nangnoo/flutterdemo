@@ -60,6 +60,15 @@ void main() {
     );
     expect(dialogTitle2, findsOneWidget);
 
+    final dialogTitle3 = find.byWidgetPredicate(
+      (Widget widget) =>
+          widget is Text &&
+          widget.key == Key('dialogTitle') &&
+          widget.data == 'Login Failed',
+      description: 'find text widget with text "Login Failed"',
+    );
+    expect(dialogTitle3, findsOneWidget);
+
     print(dialogTitle2.evaluate().first);
 
     var dialogTitleTxt = dialogTitle2.evaluate().single.widget as Text;
